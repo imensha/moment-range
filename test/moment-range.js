@@ -331,6 +331,37 @@ describe('DateRange', function() {
         acc[i].should.eql(i);
       }
     });
+
+    it('should stop iteration if callback explicitly returns false when iterating range', function() {
+      var d1 = moment('2014-01-01T00:00:00.000Z');
+      var d2 = moment('2014-01-10T00:00:00.000Z');
+      var dr1 = moment.range(d1, d2);
+      var dr2 = 1000 * 60 * 60 * 24;
+      var acc = [];
+
+      dr1.by(dr2, function(d) {
+        date = d.date()
+        acc.push(date);
+        if(date === 5) return false;
+      });
+
+      acc.length.should.equal(5);
+    });
+
+    it('should stop iteration if callback explicitly returns false when iterating shorthand string', function() {
+      var d1 = moment('2014-01-01T00:00:00.000Z');
+      var d2 = moment('2014-01-10T00:00:00.000Z');
+      var dr = moment.range(d1, d2);
+      var acc = [];
+
+      dr.by('day', function(d) {
+        date = d.date()
+        acc.push(date);
+        if(date === 5) return false;
+      });
+
+      acc.length.should.equal(5);
+    });
   });
 
   describe('#contains()', function() {

@@ -178,6 +178,21 @@ range1.by('d', function (moment) {
 acc.length == 4 // true
 ```
 
+You can break out of the iteration by explicitly returning `false`:
+
+``` javascript
+var acc = [];
+
+range1.by('d', function (moment) {
+  acc.push(moment);
+  if(moment.date() === 3) {
+    return false;
+  }
+});
+
+acc.length === 3; // true
+```
+
 ### Compare
 
 Compare range lengths or add them together with simple math:
