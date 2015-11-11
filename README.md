@@ -136,7 +136,7 @@ range.subtract(range2); // [moment.range(start, lol)]
 
 ### Iterate
 
-Iterate over your date range by an amount of time or another range:
+Iterate over your date range by an amount of time or another range, the corresponding `moment` object and iteration count is passed to the function:
 
 ``` javascript
 var start = new Date(2012, 2, 1);
@@ -146,8 +146,8 @@ var range1 = moment.range(start, end);
 var range2 = moment.range(start, two); // One day
 var acc = [];
 
-range1.by('days', function(moment) {
-  // Do something with `moment`
+range1.by('days', function(moment, i) {
+  // Do something with `moment` and `i`
 });
 ```
 
